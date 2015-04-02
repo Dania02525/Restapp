@@ -1,4 +1,4 @@
-# Phoenix Rest Example with insert, delete, update associated, preload, and test
+# Phoenix Rest JSON API Example 
 
 Requires Erlang, Elixir and postgres
 
