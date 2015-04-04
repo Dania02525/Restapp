@@ -8,14 +8,14 @@ defmodule Restapp.InvoiceController do
 
   def index(conn, _params) do
     invoices = Repo.all(Invoice)	
-    |> Repo.preload([:invoice_items])
-  	render conn, "index.json", invoices: invoices	   
+                |> Repo.preload([:invoice_items])
+    render conn, "index.json", invoices: invoices	   
   end
 
   def show(conn, %{"id" => id}) do
     invoice = Repo.get!(Invoice, id)
-    |> Repo.preload([:invoice_items])
-  	render conn, "show.json", data: invoice
+              |> Repo.preload([:invoice_items])
+    render conn, "show.json", data: invoice
   end
 
   def create(conn, params) do
@@ -33,8 +33,8 @@ defmodule Restapp.InvoiceController do
       json conn |> put_status(201), %{"message" => "Created"}
     else
       errors = Enum.map(items, & (&1.errors))
-      |> Enum.into([invoice.errors])
-      |> Enum.map(& (Enum.into(&1, %{})))
+                |> Enum.into([invoice.errors])
+                |> Enum.map(& (Enum.into(&1, %{})))
       json conn |> put_status(400), %{"message" => errors}
     end
   end
@@ -59,8 +59,8 @@ defmodule Restapp.InvoiceController do
       json conn |> put_status(200), %{"message" => "OK"}
     else
       errors = Enum.map(items, & (&1.errors))
-      |> Enum.into([invoice.errors])
-      |> Enum.map(& (Enum.into(&1, %{})))
+                |> Enum.into([invoice.errors])
+                |> Enum.map(& (Enum.into(&1, %{})))
       json conn |> put_status(400), %{"message" => errors}
     end
   end
